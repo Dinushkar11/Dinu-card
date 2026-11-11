@@ -16,20 +16,27 @@
 -->
 
 <body>
+
+<!-- ================== TOP BANNER + LOGO ==================
+     To use your logo: upload an image named logo.png next to this page.
+     Until then, the text inside <span> is shown. -->
+<div class="banner">
+  <span>dinushkar.gadgetz.lk</span>
+  <img src="logo.png" alt="Logo" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()">
+</div>
+
 <main>
 
   <!-- ================== YOUR DETAILS ================== -->
-
-  <div class="top-bar"></div>
 
   <header>
     <!-- Photo. If it can't load, the letters DR show instead. -->
     <div class="photo">
       DR
-      <img src="https://dinushkar11.github.io/Dinu-s-Portfolio/assets/img/IMG_1943.jpg" alt="" onerror="this.remove()">
+      <img src="" alt="" onerror="this.remove()">
     </div>
     <h1>Dinushkar Raaj</h1>
-    <p class="role">IT Support Specialist &amp; YouTuber</p>
+    <p class="role">IT Support Specialist &amp; Content Creator</p>
     <p class="about">Software Engineering undergraduate based in Colombo, Sri Lanka.</p>
   </header>
 
@@ -77,7 +84,7 @@
     <span class="t"><b>Facebook</b><small>dinushkar.rajakumar</small></span>
   </a>
 
-  <!-- Instagram: CHANGE both YOUR_USERNAME words below to your Instagram username -->
+  <!-- Instagram -->
   <a class="btn instagram" href="https://www.instagram.com/dinushkar.rajk/">
     <span class="ic"></span>
     <span class="t"><b>Instagram</b><small>@dinushkar.rajk</small></span>
@@ -94,10 +101,19 @@
 
 <!-- =====================================================================
      DESIGN  (no need to edit anything below this line)
+     To change logo sizes, edit the SIZE SETTINGS at the top of the :root block.
      To change the main color, change #149ddd on the line that starts with --accent.
      ===================================================================== -->
 <style>
 :root{
+  /* ===== SIZE SETTINGS: change these numbers ===== */
+  --logo-size:126px;        /* main logo max height in the banner */
+  --logo-shift:14px;        /* moves the logo down (bigger = lower, negative = higher) */
+  --logo-zoom:1.5;          /* zooms in to trim the empty space inside logo.png */
+  --avatar-overlap:64px;    /* how far the photo circle overlaps the banner */
+  --bg-logo-size:180px;     /* big faint background logo size */
+  --bg-logo-opacity:0;      /* background logo strength: 0 = hidden, 1 = solid */
+  /* ================================================= */
   --accent:#149ddd; --on-accent:#04101c;
   --bg:#040b14; --surface:#0c1826; --ink:#ffffff; --muted:#a8b2c1; --line:#1b2b3f;
   box-sizing:border-box;
@@ -111,11 +127,15 @@
 :root[data-theme="light"]{--bg:#ffffff;--surface:#f5f8fd;--ink:#272829;--muted:#5a6270;--line:#dbe3ee;color-scheme:light}
 *,*::before,*::after{box-sizing:inherit}
 html{height:100%}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Open Sans",system-ui,sans-serif;display:flex;justify-content:center;padding:0 16px 28px}
-main{width:100%;max-width:420px}
-.top-bar{height:6px;margin:0 -16px 32px;background:var(--accent)}
-header{text-align:center;margin-bottom:28px}
-.photo{position:relative;width:128px;height:128px;margin:0 auto 18px;border-radius:50%;border:4px solid var(--accent);background:var(--surface);overflow:hidden;display:grid;place-items:center;font:700 2.2rem Raleway,system-ui,sans-serif;color:var(--accent)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Open Sans",system-ui,sans-serif;padding:0 0 28px}
+main{width:100%;max-width:420px;margin:0 auto;padding:0 16px}
+/* Banner: the logo is centred in the visible area above the photo circle */
+.banner{position:relative;overflow:hidden;height:190px;padding:0 16px var(--avatar-overlap);background:linear-gradient(135deg,var(--accent),#0b5f8a);display:flex;align-items:center;justify-content:center;color:#fff;font:700 1.1rem Raleway,system-ui,sans-serif;letter-spacing:.02em}
+.banner::before{content:"";position:absolute;inset:0;background:url("logo.png") no-repeat 105% 30%/var(--bg-logo-size);opacity:var(--bg-logo-opacity)}
+.banner span,.banner img{position:relative}
+.banner img{display:block;width:auto;height:auto;max-height:var(--logo-size);max-width:90%;object-fit:contain;margin:0 auto;transform:translateY(var(--logo-shift)) scale(var(--logo-zoom))}
+header{position:relative;text-align:center;margin:calc(var(--avatar-overlap) * -1) 0 28px}
+.photo{position:relative;width:128px;height:128px;margin:0 auto 18px;border-radius:50%;border:4px solid var(--bg);background:var(--surface);overflow:hidden;display:grid;place-items:center;font:700 2.2rem Raleway,system-ui,sans-serif;color:var(--accent)}
 .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 h1{font:700 2.1rem/1.1 Raleway,system-ui,sans-serif;margin:0 0 8px}
 .role{margin:0 0 6px;font:600 1.05rem Raleway,system-ui,sans-serif;color:var(--accent)}
